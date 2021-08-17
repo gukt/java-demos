@@ -1,4 +1,4 @@
-package com.codedog996.demos.demo1;
+package demos.demo1;
 
 import sun.misc.Launcher;
 

@@ -1,4 +1,4 @@
-package com.codedog996.demos.demo2;
+package demos.demo2;
 
 /**
  * Foo class
