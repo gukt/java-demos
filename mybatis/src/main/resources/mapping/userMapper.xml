@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapping.userMapper">
+    <!-- 在select标签中编写查询的SQL语句， 设置select标签的id属性为getUser，id属性值必须是唯一的，不能够重复
+    使用parameterType属性指明查询时使用的参数类型，resultType属性指明查询返回的结果集类型
+    resultType="me.gacl.domain.User"就表示将查询结果封装成一个User类的对象返回
+    User类就是users表所对应的实体类
+    -->
+
+    <!--根据id查询得到一个user对象-->
+    <!--<select id="getUser" parameterType="int" resultType="User">-->
+        <!--select * from ccn_users where id=#{id}-->
+    <!--</select>-->
+
+    <!--<cache/>-->
+    <!--<cache-ref namespace=""/>-->
+    <!--<delete id=""/>-->
+    <!--<insert id=""/>-->
+    <!--<parameterMap id="" type=""/>-->
+    <!--<resultMap id="" type=""/>-->
+    <!--<select id=""/>-->
+    <!--<sql id=""/>-->
+    <!--<update id=""/>-->
+
+    <select id="selectUserById" parameterType="int" resultType="User">
+        select * from ccn_users where id = #{id}
+    </select>
+
+    <select id="selectUserByName" parameterType="string" resultType="User">
+        select * from ccn_users where name= #{name}
+    </select>
+
+    <select id="selectUserAsHashMap" parameterType="int" resultType="hashmap">
+        select * from ccn_users where id = #{id}
+    </select>
+
+    <select id="selectUserAndPostsById" parameterType="int" resultMap="userResultMap">
+        select *, b.id pid from ccn_users a left join ccn_posts b on a.id = b.uid where a.id = #{id};
+    </select>
+    <resultMap id="userResultMap" type="User" autoMapping="true">
+        <!--<constructor></constructor>-->
+        <!--<discriminator javaType="">-->
+            <!--<case value=""></case>-->
+        <!--</discriminator>-->
+        <id property="id" column="id"/>
+        <!--<result property="name" column="name"/>-->
+        <!--<result property="age" column="age"/>-->
+        <collection property="posts" ofType="Post">
+            <id property="id" column="pid"/>
+            <!--<result property="title" column="title"/>-->
+            <!--<result property="content" column="content"/>-->
+        </collection>
+    </resultMap>
+
+    <!--<select id="selectAllUsers" resultType="User">-->
+    <select id="selectAllUsers" resultType="User">
+        SELECT  * from ccn_users
+    </select>
+
+    <insert id="insertUser"
+            parameterType="bafeimao.examples.mybatis.domain.User"
+            flushCache="true"
+            statementType="PREPARED"
+            keyColumn=""
+            useGeneratedKeys="true"
+            keyProperty="id"
+            timeout="20">
+        INSERT INTO ccn_users(id, name, age) VALUES (#{id}, #{name}, #{age})
+    </insert>
+
+    <update id="updateUser"
+            parameterType="bafeimao.examples.mybatis.domain.User"
+            flushCache="true"
+            statementType="PREPARED"
+            timeout="20" >
+        UPDATE ccn_users SET
+          name = #{name},
+          age = #{age}
+        WHERE
+          id = #{id}
+    </update>
+
+    <delete id="deleteUser"
+            parameterType="bafeimao.examples.mybatis.domain.User"
+            flushCache="true"
+            statementType="PREPARED"
+            timeout="20">
+        DELETE  from ccn_users where id = #{id}
+    </delete>
+
+</mapper>

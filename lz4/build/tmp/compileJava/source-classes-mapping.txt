@@ -1,0 +1,6 @@
+demos/demo1/Hello.java
+ demos.demo1.Hello
+demos/demo2/NetworkClassLoader.java
+ demos.demo2.NetworkClassLoader
+demos/demo2/Foo.java
+ demos.demo2.Foo

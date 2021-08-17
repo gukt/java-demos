@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapping.postMapper">
+     <select id="selectPost" parameterType="int" resultMap="postResultMap">
+         SELECT  *, a.id pid, b.id uid from ccn_posts a LEFT  JOIN  ccn_users b on a.uid = b.id where a.id = #{id}
+     </select>
+
+    <resultMap id="postResultMap" type="Post">
+        <id property="id" column="pid"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <association property="user" javaType="User">
+            <id property="id" column="uid"/>
+            <result property="name" column="name"/>
+            <result property="age" column="age"/>
+        </association>
+    </resultMap>
+</mapper>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd ">
+	<!-- 配置自定义属性编辑器 -->
+	<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+		<property name="customEditors">
+			<map>
+				<entry key="java.net.SocketAddress" value="org.apache.mina.integration.beans.InetSocketAddressEditor" />
+			</map>
+		</property>
+	</bean>
+	<bean id="ioHandler" class="org.apache.mina.handler.demux.DemuxingIoHandler" />
+	<bean id="loggingFilter" class="org.apache.mina.filter.logging.LoggingFilter" />
+	<bean id="executorFilter" class="org.apache.mina.filter.executor.ExecutorFilter">
+		<constructor-arg>
+			<bean id="threadPool" class="java.util.concurrent.Executors"
+				factory-method="newCachedThreadPool" />
+		</constructor-arg>
+	</bean>
+	<bean id="filterChainBuilder" class="org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder">
+		<property name="filters">
+			<map>
+				<!--				<entry key="codecFilter" value-ref="codecFilter" />-->
+				<entry key="executor" value-ref="executorFilter" />
+				<entry key="loggingFilter" value-ref="loggingFilter" />
+			</map>
+		</property>
+	</bean>
+	<bean id="ioAcceptor" class="org.apache.mina.transport.socket.nio.NioSocketAcceptor">
+		<!-- 设置Handler -->
+		<property name="handler" ref="ioHandler" />
+
+		<!-- 设置其他一些属性 -->
+		<property name="filterChainBuilder" ref="filterChainBuilder" />
+		<property name="reuseAddress" value="true" />
+		<property name="backlog" value="50" />
+		<property name="defaultLocalAddress" value=":9123" />
+	</bean>
+</beans>
