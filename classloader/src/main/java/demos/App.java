@@ -1,9 +1,9 @@
 package demos;
 
 /**
- * Demo1Tests class
+ * App class
  *
  * @author https://github.com/gukt
  */
-public class Demo1Tests {
+public class App {
 }

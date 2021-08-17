@@ -1,4 +1,4 @@
-package tech.codedog.guides;
+package demos.socket;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

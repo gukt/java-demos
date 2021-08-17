@@ -16,19 +16,21 @@ public class Demo3Tests {
 
     @Test
     void testGetResource() {
+        // 资源文件要放在 resources 目录，如果放在 java 目录中和源代码混在一起，编译会忽略这些非源码文件
+        //
         // Class 和 ClassLoader 上都有 getResource 方法
         // Class.getResource 默认相对路径是类所在的包路径；而 ClassLoader.getResource 默认的相对路径是 classpath
         // 比如: 对于 demos/demo3/foo.txt 而言；如果使用
         // file:/Users/ktgu/workspace/projects/900-demos/java-demos/class-loader/out/production/resources/demo3/bar.txt
         URL url11 = getClass().getResource("/demo3/foo.txt");
         // file:/Users/ktgu/workspace/projects/900-demos/java-demos/class-loader/out/production/resources/demo3/bar.txt
-        URL url12 = this.getClass().getClassLoader().getResource("demo3/bar.txt");
+        URL url12 = this.getClass().getClassLoader().getResource("demo3/foo.txt");
         Assertions.assertNotNull(url11);
         Assertions.assertNotNull(url12);
         Assertions.assertEquals(url11, url12);
 
         URL url31 = getClass().getResource("foo.txt");
-        URL url32 = getClass().getResource("/demos/demo3/foo.txt");
+        URL url32 = getClass().getResource("/demos/demo3/bar.txt");
         System.out.println(url31);
         System.out.println(url32);
 
