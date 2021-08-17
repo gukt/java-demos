@@ -1,6 +1,5 @@
 package demos;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -26,7 +25,7 @@ public class FileTests {
 
     private File ensureFile(String filename, boolean deleteOnExists) {
         File file = new File(filename);
-        if(file.exists() && deleteOnExists){
+        if (file.exists() && deleteOnExists) {
             boolean deleted = file.delete();
             System.out.println("ensureFile - File '" + filename + "' exists, deleted: " + deleted);
         }
@@ -43,7 +42,7 @@ public class FileTests {
         return file;
     }
 
-    private void ensureFileAbsent(String filename) {
+    private File ensureFileAbsent(String filename) {
         File file = new File(filename);
         if (file.exists()) {
             boolean deleted = file.delete();
@@ -51,6 +50,7 @@ public class FileTests {
                 System.out.println("ensureFileAbsent - Deleted the file: " + filename);
             }
         }
+        return file;
     }
 
     @Test
@@ -91,8 +91,20 @@ public class FileTests {
         // Output: /Users/ktgu/workspace/projects/900-demos/java-demos/io/.../a.txt
         System.out.println(new File(".../a.txt").getCanonicalPath());
 
-        System.out.println(new File("a.txt").getParent());
-        System.out.println(new File("a.txt").getParent());
+        // 测试这个抽象路径名是否是绝对的。 绝对路径名的定义取决于系统。
+        // 在 UNIX 系统上，如果前缀为"/" ，则路径名是绝对路径名。
+        // 在 Microsoft Windows 系统上，如果路径名的前缀是驱动器说明符后跟"\\" ，或者其前缀是"\\\\" ，则该路径名是绝对路径名。
+        System.out.println(new File("a.txt").isAbsolute());
+        System.out.println(new File("/tmp/a.txt").isAbsolute());
+
+        // 前面都是返回 String 的路径，还有其他一些方法返回 File 的，他们是
+        File file = new File("../../a.txt");
+        // Output: ../..
+        System.out.println(file.getParentFile());
+        // Output: /Users/ktgu/workspace/projects/900-demos/a.txt
+        System.out.println(file.getCanonicalFile());
+        // Output: /Users/ktgu/workspace/projects/900-demos/java-demos/io/../../a.txt
+        System.out.println(file.getAbsoluteFile());
     }
 
     @Test
@@ -130,58 +142,51 @@ public class FileTests {
     }
 
     @Test
-    void testMisc() {
+    void testGetSpace() {
+        // 可以通过一下方法获取存储空间信息（但不保证正确，因为文件系统随时都在变动）
         System.out.println(new File("/").getFreeSpace());
         System.out.println(new File("/").getTotalSpace());
         System.out.println(new File("/").getUsableSpace());
+    }
 
+    @Test
+    void testIsFileOrDirectory() {
         // 在 linux 中，一切皆文件；就像 Java 中一切皆对象。
         // isFile 和 isDirectory 用来判断是否是文件还是目录；
-        assertTrue(ensureFile("/tmp/foo.txt").isFile());
-        assertTrue(ensureFile("/tmp").isDirectory());
+        // isFile: 仅当文件存在且不是目录时才返回 ture
+        File file1 = ensureFile("/tmp/a.txt");
+        assertTrue(file1.exists());
+        assertTrue(file1.isFile());
 
-        File file = new File("/tmp/a.txt");
-        System.out.println(file.getName());
-        System.out.println(file.getPath());
-        System.out.println(file.getParent());
+        File file2 = new File("/tmp/a");
+        // 创建目录，确保目录存在
+        if (file2.mkdir()) {
+            // 因为是目录，显然 isDirectory 返回 true
+            assertTrue(new File("/tmp/a").isDirectory());
+        }
+    }
 
-        String filename = "/tmp/foo.txt";
-        ensureFileAbsent(filename);
-        assertFalse(new File(filename).exists());
+    @Test
+    void testMisc() {
+        // File 用以表示一个文件或目录
+        // 分隔符有两种：
+        // 目录分隔符 - linux: (/); windows: (\)
+        // 路径分隔符 - linux: (:); windows: (;)
+        // 获得路径分隔符
+        // 一个返回 String，一个返回 char
+        System.out.println(File.pathSeparator);
+        System.out.println(File.pathSeparatorChar);
+        // 获得目录分隔符
+        System.out.println(File.separator);
+        System.out.println(File.separatorChar);
 
-        // getParentFile() 用来访问上级目录；parent() 用来得到上级目录的路径
-        File file21 = ensureFile(filename);
-        System.out.println(file21.getParentFile());
-        System.out.println(file21.getParent());
-
-        // File file = new File("a.txt");
-        // file.isAbsolute();
-        // // file.compareTo()
-        // file.getCanonicalFile();
-        // file.getCanonicalPath();
-        // file.getName();
-        // file.getPath();
-        // file.getParent();
+        File file1 = new File("/tmp");
+        File file2 = new File("/tmp/", "/a.txt");
+        System.out.println(file2.getAbsolutePath());
     }
 
     @Test
     void testReadFile() {
-
-        // File 用以表示一个文件或目录
-        // 绝对目录就是一个从根目录开始的全路径；相对目录，顾名思义，需要有参照物，即相对于那个目录而言
-        // 分隔符有两种：目录分隔符；路径分隔符
-        // 目录分隔符：windows(\); linux(/)
-        // 路径分隔符 windows (;), linux(:)
-        // 所以 windows 下path 一般表示为 path-to-a;path-to-b, linux: path-to-a:path-to-b
-
-        // 获得路径分隔符
-        System.out.println(File.pathSeparator);
-        System.out.println(File.pathSeparatorChar);
-
-        // 获得目录分隔符（一个返回 String，一个返回 char）
-        System.out.println(File.separator);
-        System.out.println(File.separatorChar);
-
         // File 构造函数有 4 个
         String filename = "foo.txt";
         File file1 = new File(filename);
