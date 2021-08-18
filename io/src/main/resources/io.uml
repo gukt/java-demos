@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>java.io.InputStream</OriginalElement>
+  <nodes>
+    <node x="4033.5560543278066" y="468.0">java.io.RandomAccessFile</node>
+    <node x="1835.3070902394084" y="356.0">java.io.PipedReader</node>
+    <node x="4404.040630755065" y="356.0">java.io.DataInputStream</node>
+    <node x="4137.803571428571" y="222.0">java.io.BufferedInputStream</node>
+    <node x="2925.241515390685" y="222.0">java.io.ByteArrayOutputStream</node>
+    <node x="426.9999999999998" y="356.0">java.io.CharArrayReader</node>
+    <node x="4373.803571428571" y="222.0">java.io.PushbackInputStream</node>
+    <node x="1071.481205603788" y="222.0">java.io.ObjectInputStream</node>
+    <node x="257.9999999999998" y="356.0">java.io.FilterReader</node>
+    <node x="3315.303571428571" y="356.0">java.io.BufferedOutputStream</node>
+    <node x="3670.9310543278066" y="100.0">java.io.FilterInputStream</node>
+    <node x="862.616515390685" y="100.0">java.io.ByteArrayInputStream</node>
+    <node x="3565.303571428571" y="356.0">java.io.DataOutputStream</node>
+    <node x="2928.7222770323597" y="356.0">java.io.PipedInputStream</node>
+    <node x="2393.731205603788" y="222.0">java.io.OutputStreamWriter</node>
+    <node x="897.8322974217317" y="356.0">java.io.StreamTokenizer</node>
+    <node x="3902.803571428571" y="222.0">java.io.ObjectOutputStream</node>
+    <node x="2428.881495001313" y="356.0">java.io.PrintStream</node>
+    <node x="3220.6597770323597" y="100.0">java.io.OutputStream</node>
+    <node x="2428.116515390685" y="468.0">java.io.PrintWriter</node>
+    <node x="2037.5977209944735" y="222.0">java.io.BufferedWriter</node>
+    <node x="1108.616515390685" y="100.0">java.io.SequenceInputStream</node>
+    <node x="1513.5977209944735" y="222.0">java.io.FilterWriter</node>
+    <node x="2226.731205603788" y="222.0">java.io.StringWriter</node>
+    <node x="2641.0347770323597" y="356.0">java.io.FileWriter</node>
+    <node x="2645.7847770323597" y="222.0">java.io.FileOutputStream</node>
+    <node x="3680.803571428571" y="222.0">java.io.FilterOutputStream</node>
+    <node x="0.0" y="468.0">java.io.LineNumberReader</node>
+    <node x="3185.241515390685" y="222.0">java.io.PipedOutputStream</node>
+    <node x="536.4999999999998" y="100.0">java.io.FileInputStream</node>
+    <node x="1838.5977209944735" y="222.0">java.io.CharArrayWriter</node>
+    <node x="322.1404235727416" y="222.0">java.io.Reader</node>
+    <node x="1229.9999999999998" y="356.0">java.io.InputStreamReader</node>
+    <node x="1673.5977209944735" y="222.0">java.io.PipedWriter</node>
+    <node x="722.8322974217317" y="356.0">java.io.StringReader</node>
+    <node x="282.2499999999998" y="468.0">java.io.PushbackReader</node>
+    <node x="1786.981205603788" y="100.0">java.io.Writer</node>
+    <node x="63.0" y="356.0">java.io.BufferedReader</node>
+    <node x="957.4187056037881" y="468.0">java.io.FileReader</node>
+    <node x="1196.731205603788" y="0.0">java.io.InputStream</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="java.io.FileReader" target="java.io.InputStreamReader" relationship="GENERALIZATION">
+      <point x="34.0" y="-15.0" />
+      <point x="1059.418705603788" y="447.0" />
+      <point x="1331.9999999999998" y="447.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.PushbackInputStream" target="java.io.FilterInputStream" relationship="GENERALIZATION">
+      <point x="-56.25" y="-15.0" />
+      <point x="4430.053571428571" y="201.0" />
+      <point x="4363.303571428571" y="201.0" />
+      <point x="4363.303571428571" y="151.0" />
+      <point x="3764.9310543278066" y="151.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.PrintStream" target="java.io.BufferedWriter" relationship="CREATE">
+      <point x="-62.14285714285711" y="-15.0" />
+      <point x="2439.238637858456" y="304.0" />
+      <point x="2079.5977209944735" y="304.0" />
+      <point x="-42.0" y="15.0" />
+    </edge>
+    <edge source="java.io.StreamTokenizer" target="java.io.Reader" relationship="DEPENDENCY">
+      <point x="-22.625" y="-15.0" />
+      <point x="965.7072974217317" y="324.0" />
+      <point x="342.1404235727416" y="324.0" />
+      <point x="342.1404235727416" y="294.0" />
+      <point x="376.1404235727416" y="294.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.PrintWriter" target="java.io.PrintStream" relationship="DEPENDENCY">
+      <point x="25.6875" y="-15.0" />
+      <point x="2522.304015390685" y="427.0" />
+      <point x="2537.631495001313" y="427.0" />
+      <point x="36.25" y="15.0" />
+    </edge>
+    <edge source="java.io.CharArrayWriter" target="java.io.Writer" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="1928.0977209944735" y="191.0" />
+      <point x="2144.981205603788" y="191.0" />
+      <point x="2144.981205603788" y="171.0" />
+      <point x="1862.731205603788" y="171.0" />
+      <point x="25.25" y="15.0" />
+    </edge>
+    <edge source="java.io.InputStreamReader" target="java.io.Reader" relationship="GENERALIZATION">
+      <point x="-51.0" y="-15.0" />
+      <point x="1280.9999999999998" y="314.0" />
+      <point x="446.1404235727416" y="314.0" />
+      <point x="446.1404235727416" y="304.0" />
+      <point x="412.1404235727416" y="304.0" />
+      <point x="36.0" y="15.0" />
+    </edge>
+    <edge source="java.io.FilterReader" target="java.io.Reader" relationship="TO_ONE">
+      <point x="-37.0" y="-15.0" />
+      <point x="294.9999999999998" y="334.0" />
+      <point x="283.6404235727416" y="334.0" />
+      <point x="283.6404235727416" y="304.0" />
+      <point x="340.1404235727416" y="304.0" />
+      <point x="-36.0" y="15.0" />
+    </edge>
+    <edge source="java.io.PrintWriter" target="java.io.OutputStream" relationship="DEPENDENCY">
+      <point x="59.9375" y="-15.0" />
+      <point x="2556.554015390685" y="447.0" />
+      <point x="3132.2222770323597" y="447.0" />
+      <point x="3132.2222770323597" y="284.0" />
+      <point x="2903.741515390685" y="284.0" />
+      <point x="2903.741515390685" y="181.0" />
+      <point x="2740.7847770323597" y="181.0" />
+      <point x="2740.7847770323597" y="161.0" />
+      <point x="3247.826443699026" y="161.0" />
+      <point x="-54.33333333333337" y="15.0" />
+    </edge>
+    <edge source="java.io.PrintStream" target="java.io.FilterOutputStream" relationship="GENERALIZATION">
+      <point x="62.14285714285711" y="-15.0" />
+      <point x="2563.5243521441703" y="324.0" />
+      <point x="3478.7222770323597" y="324.0" />
+      <point x="3478.7222770323597" y="314.0" />
+      <point x="3781.803571428571" y="314.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.SequenceInputStream" target="java.io.InputStream" relationship="TO_ONE">
+      <point x="56.5" y="-15.0" />
+      <point x="1278.116515390685" y="70.0" />
+      <point x="1270.731205603788" y="70.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.FileInputStream" target="java.io.InputStream" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="624.4999999999998" y="80.0" />
+      <point x="967.7312056037881" y="80.0" />
+      <point x="967.7312056037881" y="60.0" />
+      <point x="1221.3978722704546" y="60.0" />
+      <point x="-49.33333333333337" y="15.0" />
+    </edge>
+    <edge source="java.io.FilterOutputStream" target="java.io.OutputStream" relationship="GENERALIZATION">
+      <point x="-50.5" y="-15.0" />
+      <point x="3731.303571428571" y="171.0" />
+      <point x="3255.006495001313" y="171.0" />
+      <point x="3255.006495001313" y="161.0" />
+      <point x="3302.1597770323597" y="161.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.PrintWriter" target="java.io.Writer" relationship="GENERALIZATION">
+      <point x="-25.6875" y="-15.0" />
+      <point x="2470.929015390685" y="427.0" />
+      <point x="2216.231205603788" y="427.0" />
+      <point x="2216.231205603788" y="191.0" />
+      <point x="2144.981205603788" y="191.0" />
+      <point x="2144.981205603788" y="171.0" />
+      <point x="1862.731205603788" y="171.0" />
+      <point x="25.25" y="15.0" />
+    </edge>
+    <edge source="java.io.ObjectOutputStream" target="java.io.OutputStream" relationship="GENERALIZATION">
+      <point x="-53.75" y="-15.0" />
+      <point x="3956.553571428571" y="171.0" />
+      <point x="3255.006495001313" y="171.0" />
+      <point x="3255.006495001313" y="161.0" />
+      <point x="3302.1597770323597" y="161.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.PipedReader" target="java.io.Reader" relationship="GENERALIZATION">
+      <point x="-57.375" y="-15.0" />
+      <point x="1854.4320902394084" y="314.0" />
+      <point x="446.1404235727416" y="314.0" />
+      <point x="446.1404235727416" y="304.0" />
+      <point x="412.1404235727416" y="304.0" />
+      <point x="36.0" y="15.0" />
+    </edge>
+    <edge source="java.io.PushbackReader" target="java.io.Reader" relationship="DEPENDENCY">
+      <point x="46.0" y="-15.0" />
+      <point x="420.2499999999998" y="447.0" />
+      <point x="416.4999999999998" y="447.0" />
+      <point x="416.4999999999998" y="324.0" />
+      <point x="342.1404235727416" y="324.0" />
+      <point x="342.1404235727416" y="294.0" />
+      <point x="376.1404235727416" y="294.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.ObjectInputStream" target="java.io.OutputStream" relationship="DEPENDENCY">
+      <point x="50.0" y="-15.0" />
+      <point x="1221.481205603788" y="181.0" />
+      <point x="2740.7847770323597" y="181.0" />
+      <point x="2740.7847770323597" y="161.0" />
+      <point x="3247.826443699026" y="161.0" />
+      <point x="-54.33333333333337" y="15.0" />
+    </edge>
+    <edge source="java.io.PrintWriter" target="java.io.Writer" relationship="TO_ONE">
+      <point x="-59.9375" y="-15.0" />
+      <point x="2436.679015390685" y="447.0" />
+      <point x="1503.0977209944735" y="447.0" />
+      <point x="1503.0977209944735" y="201.0" />
+      <point x="1562.0197974217317" y="201.0" />
+      <point x="1562.0197974217317" y="171.0" />
+      <point x="1812.231205603788" y="171.0" />
+      <point x="-25.25" y="15.0" />
+    </edge>
+    <edge source="java.io.InputStreamReader" target="java.io.InputStream" relationship="DEPENDENCY">
+      <point x="51.0" y="-15.0" />
+      <point x="1382.9999999999998" y="304.0" />
+      <point x="1455.616515390685" y="304.0" />
+      <point x="1455.616515390685" y="60.0" />
+      <point x="4170.72227703236" y="60.0" />
+      <point x="4170.72227703236" y="50.0" />
+      <point x="1320.0645389371216" y="50.0" />
+      <point x="49.33333333333337" y="15.0" />
+    </edge>
+    <edge source="java.io.FilterOutputStream" target="java.io.OutputStream" relationship="TO_ONE">
+      <point x="50.5" y="-15.0" />
+      <point x="3832.303571428571" y="161.0" />
+      <point x="3356.493110365693" y="161.0" />
+      <point x="54.33333333333337" y="15.0" />
+    </edge>
+    <edge source="java.io.StreamTokenizer" target="java.io.Reader" relationship="TO_ONE">
+      <point x="-67.875" y="-15.0" />
+      <point x="920.4572974217317" y="334.0" />
+      <point x="283.6404235727416" y="334.0" />
+      <point x="283.6404235727416" y="304.0" />
+      <point x="340.1404235727416" y="304.0" />
+      <point x="-36.0" y="15.0" />
+    </edge>
+    <edge source="java.io.PrintStream" target="java.io.OutputStreamWriter" relationship="CREATE">
+      <point x="-41.42857142857139" y="-15.0" />
+      <point x="2459.952923572742" y="294.0" />
+      <point x="2441.7029235727414" y="294.0" />
+      <point x="2441.7029235727414" y="274.0" />
+      <point x="2428.731205603788" y="274.0" />
+      <point x="-70.0" y="15.0" />
+    </edge>
+    <edge source="java.io.ByteArrayOutputStream" target="java.io.OutputStream" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="3045.241515390685" y="171.0" />
+      <point x="3255.006495001313" y="171.0" />
+      <point x="3255.006495001313" y="161.0" />
+      <point x="3302.1597770323597" y="161.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.PushbackInputStream" target="java.io.InputStream" relationship="DEPENDENCY">
+      <point x="56.25" y="-15.0" />
+      <point x="4542.553571428571" y="60.0" />
+      <point x="4170.72227703236" y="60.0" />
+      <point x="4170.72227703236" y="50.0" />
+      <point x="1320.0645389371216" y="50.0" />
+      <point x="49.33333333333337" y="15.0" />
+    </edge>
+    <edge source="java.io.PrintStream" target="java.io.OutputStreamWriter" relationship="TO_ONE">
+      <point x="0.0" y="-15.0" />
+      <point x="2501.381495001313" y="334.0" />
+      <point x="2498.731205603788" y="334.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.PipedWriter" target="java.io.PipedReader" relationship="TO_ONE">
+      <point x="48.33333333333337" y="15.0" />
+      <point x="1794.4310543278068" y="274.0" />
+      <point x="1969.1820902394084" y="274.0" />
+      <point x="57.375" y="-15.0" />
+    </edge>
+    <edge source="java.io.StreamTokenizer" target="java.io.InputStream" relationship="DEPENDENCY">
+      <point x="67.875" y="-15.0" />
+      <point x="1056.2072974217317" y="304.0" />
+      <point x="1060.981205603788" y="304.0" />
+      <point x="1060.981205603788" y="171.0" />
+      <point x="1345.116515390685" y="171.0" />
+      <point x="1345.116515390685" y="60.0" />
+      <point x="4170.72227703236" y="60.0" />
+      <point x="4170.72227703236" y="50.0" />
+      <point x="1320.0645389371216" y="50.0" />
+      <point x="49.33333333333337" y="15.0" />
+    </edge>
+    <edge source="java.io.DataOutputStream" target="java.io.FilterOutputStream" relationship="GENERALIZATION">
+      <point x="-49.75" y="-15.0" />
+      <point x="3615.053571428571" y="324.0" />
+      <point x="3478.7222770323597" y="324.0" />
+      <point x="3478.7222770323597" y="314.0" />
+      <point x="3781.803571428571" y="314.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.RandomAccessFile" target="java.io.DataOutputStream" relationship="DEPENDENCY">
+      <point x="-50.0" y="-15.0" />
+      <point x="4083.5560543278066" y="447.0" />
+      <point x="3664.803571428571" y="447.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.SequenceInputStream" target="java.io.InputStream" relationship="GENERALIZATION">
+      <point x="-56.5" y="-15.0" />
+      <point x="1165.116515390685" y="80.0" />
+      <point x="967.7312056037881" y="80.0" />
+      <point x="967.7312056037881" y="60.0" />
+      <point x="1221.3978722704546" y="60.0" />
+      <point x="-49.33333333333337" y="15.0" />
+    </edge>
+    <edge source="java.io.PipedWriter" target="java.io.Writer" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="1746.0977209944735" y="191.0" />
+      <point x="2144.981205603788" y="191.0" />
+      <point x="2144.981205603788" y="171.0" />
+      <point x="1862.731205603788" y="171.0" />
+      <point x="25.25" y="15.0" />
+    </edge>
+    <edge source="java.io.PipedOutputStream" target="java.io.PipedInputStream" relationship="TO_ONE">
+      <point x="-69.0" y="15.0" />
+      <point x="3219.741515390685" y="294.0" />
+      <point x="3001.0972770323597" y="294.0" />
+      <point x="-24.125" y="-15.0" />
+    </edge>
+    <edge source="java.io.PrintStream" target="java.io.OutputStream" relationship="DEPENDENCY">
+      <point x="20.71428571428578" y="-15.0" />
+      <point x="2522.0957807155987" y="314.0" />
+      <point x="2618.597720994473" y="314.0" />
+      <point x="2618.597720994473" y="181.0" />
+      <point x="2740.7847770323597" y="181.0" />
+      <point x="2740.7847770323597" y="161.0" />
+      <point x="3247.826443699026" y="161.0" />
+      <point x="-54.33333333333337" y="15.0" />
+    </edge>
+    <edge source="java.io.BufferedInputStream" target="java.io.FilterInputStream" relationship="GENERALIZATION">
+      <point x="53.75" y="-15.0" />
+      <point x="4299.053571428571" y="201.0" />
+      <point x="4363.303571428571" y="201.0" />
+      <point x="4363.303571428571" y="151.0" />
+      <point x="3764.9310543278066" y="151.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.DataOutputStream" target="java.io.OutputStream" relationship="DEPENDENCY">
+      <point x="49.75" y="-15.0" />
+      <point x="3714.553571428571" y="334.0" />
+      <point x="3670.303571428571" y="334.0" />
+      <point x="3670.303571428571" y="181.0" />
+      <point x="2740.7847770323597" y="181.0" />
+      <point x="2740.7847770323597" y="161.0" />
+      <point x="3247.826443699026" y="161.0" />
+      <point x="-54.33333333333337" y="15.0" />
+    </edge>
+    <edge source="java.io.DataInputStream" target="java.io.PushbackInputStream" relationship="CREATE">
+      <point x="0.0" y="-15.0" />
+      <point x="4496.540630755065" y="334.0" />
+      <point x="4486.303571428571" y="334.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.LineNumberReader" target="java.io.Reader" relationship="DEPENDENCY">
+      <point x="-50.75" y="-15.0" />
+      <point x="50.75" y="447.0" />
+      <point x="52.5" y="447.0" />
+      <point x="52.5" y="324.0" />
+      <point x="342.1404235727416" y="324.0" />
+      <point x="342.1404235727416" y="294.0" />
+      <point x="376.1404235727416" y="294.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.PipedOutputStream" target="java.io.OutputStream" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="3288.741515390685" y="171.0" />
+      <point x="3255.006495001313" y="171.0" />
+      <point x="3255.006495001313" y="161.0" />
+      <point x="3302.1597770323597" y="161.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.BufferedReader" target="java.io.Reader" relationship="TO_ONE">
+      <point x="-43.75" y="-15.0" />
+      <point x="106.75" y="334.0" />
+      <point x="283.6404235727416" y="334.0" />
+      <point x="283.6404235727416" y="304.0" />
+      <point x="340.1404235727416" y="304.0" />
+      <point x="-36.0" y="15.0" />
+    </edge>
+    <edge source="java.io.PrintWriter" target="java.io.BufferedWriter" relationship="CREATE">
+      <point x="-42.8125" y="-15.0" />
+      <point x="2453.804015390685" y="437.0" />
+      <point x="1824.8070902394084" y="437.0" />
+      <point x="1824.8070902394084" y="304.0" />
+      <point x="2079.5977209944735" y="304.0" />
+      <point x="-42.0" y="15.0" />
+    </edge>
+    <edge source="java.io.StringReader" target="java.io.Reader" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="800.3322974217317" y="314.0" />
+      <point x="446.1404235727416" y="314.0" />
+      <point x="446.1404235727416" y="304.0" />
+      <point x="412.1404235727416" y="304.0" />
+      <point x="36.0" y="15.0" />
+    </edge>
+    <edge source="java.io.BufferedOutputStream" target="java.io.FilterOutputStream" relationship="GENERALIZATION">
+      <point x="57.5" y="-15.0" />
+      <point x="3487.803571428571" y="324.0" />
+      <point x="3478.7222770323597" y="324.0" />
+      <point x="3478.7222770323597" y="314.0" />
+      <point x="3781.803571428571" y="314.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.DataInputStream" target="java.io.InputStream" relationship="DEPENDENCY">
+      <point x="61.666666666666515" y="-15.0" />
+      <point x="4558.207297421732" y="334.0" />
+      <point x="4609.303571428571" y="334.0" />
+      <point x="4609.303571428571" y="60.0" />
+      <point x="4170.72227703236" y="60.0" />
+      <point x="4170.72227703236" y="50.0" />
+      <point x="1320.0645389371216" y="50.0" />
+      <point x="49.33333333333337" y="15.0" />
+    </edge>
+    <edge source="java.io.FileOutputStream" target="java.io.OutputStream" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="2740.7847770323597" y="171.0" />
+      <point x="3255.006495001313" y="171.0" />
+      <point x="3255.006495001313" y="161.0" />
+      <point x="3302.1597770323597" y="161.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.DataInputStream" target="java.io.FilterInputStream" relationship="GENERALIZATION">
+      <point x="-61.666666666666515" y="-15.0" />
+      <point x="4434.873964088398" y="334.0" />
+      <point x="4363.303571428571" y="334.0" />
+      <point x="4363.303571428571" y="151.0" />
+      <point x="3764.9310543278066" y="151.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.RandomAccessFile" target="java.io.DataInputStream" relationship="DEPENDENCY">
+      <point x="50.0" y="-15.0" />
+      <point x="4183.556054327806" y="447.0" />
+      <point x="4496.540630755065" y="447.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.PrintWriter" target="java.io.FileOutputStream" relationship="CREATE">
+      <point x="42.8125" y="-15.0" />
+      <point x="2539.429015390685" y="437.0" />
+      <point x="2855.0197974217317" y="437.0" />
+      <point x="2855.0197974217317" y="334.0" />
+      <point x="2740.7847770323597" y="334.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.OutputStreamWriter" target="java.io.Writer" relationship="GENERALIZATION">
+      <point x="-52.5" y="-15.0" />
+      <point x="2446.231205603788" y="191.0" />
+      <point x="2144.981205603788" y="191.0" />
+      <point x="2144.981205603788" y="171.0" />
+      <point x="1862.731205603788" y="171.0" />
+      <point x="25.25" y="15.0" />
+    </edge>
+    <edge source="java.io.PrintStream" target="java.io.BufferedWriter" relationship="TO_ONE">
+      <point x="-20.714285714285666" y="-15.0" />
+      <point x="2480.6672092870276" y="284.0" />
+      <point x="2163.5977209944735" y="284.0" />
+      <point x="42.0" y="15.0" />
+    </edge>
+    <edge source="java.io.LineNumberReader" target="java.io.BufferedReader" relationship="GENERALIZATION">
+      <point x="50.75" y="-15.0" />
+      <point x="152.25" y="447.0" />
+      <point x="150.5" y="447.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.BufferedReader" target="java.io.Reader" relationship="GENERALIZATION">
+      <point x="43.75" y="-15.0" />
+      <point x="194.25" y="314.0" />
+      <point x="446.1404235727416" y="314.0" />
+      <point x="446.1404235727416" y="304.0" />
+      <point x="412.1404235727416" y="304.0" />
+      <point x="36.0" y="15.0" />
+    </edge>
+    <edge source="java.io.ByteArrayInputStream" target="java.io.InputStream" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="975.116515390685" y="80.0" />
+      <point x="967.7312056037881" y="80.0" />
+      <point x="967.7312056037881" y="60.0" />
+      <point x="1221.3978722704546" y="60.0" />
+      <point x="-49.33333333333337" y="15.0" />
+    </edge>
+    <edge source="java.io.ObjectInputStream" target="java.io.InputStream" relationship="GENERALIZATION">
+      <point x="-50.0" y="-15.0" />
+      <point x="1121.481205603788" y="151.0" />
+      <point x="852.116515390685" y="151.0" />
+      <point x="852.116515390685" y="80.0" />
+      <point x="967.7312056037881" y="80.0" />
+      <point x="967.7312056037881" y="60.0" />
+      <point x="1221.3978722704546" y="60.0" />
+      <point x="-49.33333333333337" y="15.0" />
+    </edge>
+    <edge source="java.io.PipedInputStream" target="java.io.InputStream" relationship="GENERALIZATION">
+      <point x="-72.375" y="-15.0" />
+      <point x="2952.8472770323597" y="314.0" />
+      <point x="2914.741515390685" y="314.0" />
+      <point x="2914.741515390685" y="80.0" />
+      <point x="967.7312056037881" y="80.0" />
+      <point x="967.7312056037881" y="60.0" />
+      <point x="1221.3978722704546" y="60.0" />
+      <point x="-49.33333333333337" y="15.0" />
+    </edge>
+    <edge source="java.io.PipedWriter" target="java.io.PipedReader" relationship="DEPENDENCY">
+      <point x="0.0" y="15.0" />
+      <point x="1746.0977209944735" y="284.0" />
+      <point x="1930.9320902394084" y="284.0" />
+      <point x="19.125" y="-15.0" />
+    </edge>
+    <edge source="java.io.PipedReader" target="java.io.PipedWriter" relationship="DEPENDENCY">
+      <point x="-19.125" y="-15.0" />
+      <point x="1892.6820902394084" y="294.0" />
+      <point x="1697.76438766114" y="294.0" />
+      <point x="-48.33333333333337" y="15.0" />
+    </edge>
+    <edge source="java.io.BufferedWriter" target="java.io.Writer" relationship="TO_ONE">
+      <point x="-42.0" y="-15.0" />
+      <point x="2079.5977209944735" y="201.0" />
+      <point x="1562.0197974217317" y="201.0" />
+      <point x="1562.0197974217317" y="171.0" />
+      <point x="1812.231205603788" y="171.0" />
+      <point x="-25.25" y="15.0" />
+    </edge>
+    <edge source="java.io.FilterInputStream" target="java.io.InputStream" relationship="GENERALIZATION">
+      <point x="-47.0" y="-15.0" />
+      <point x="3717.9310543278066" y="80.0" />
+      <point x="967.7312056037881" y="80.0" />
+      <point x="967.7312056037881" y="60.0" />
+      <point x="1221.3978722704546" y="60.0" />
+      <point x="-49.33333333333337" y="15.0" />
+    </edge>
+    <edge source="java.io.ObjectOutputStream" target="java.io.InputStream" relationship="DEPENDENCY">
+      <point x="53.75" y="-15.0" />
+      <point x="4064.053571428571" y="60.0" />
+      <point x="4170.72227703236" y="60.0" />
+      <point x="4170.72227703236" y="50.0" />
+      <point x="1320.0645389371216" y="50.0" />
+      <point x="49.33333333333337" y="15.0" />
+    </edge>
+    <edge source="java.io.PrintWriter" target="java.io.PrintStream" relationship="TO_ONE">
+      <point x="8.5625" y="-15.0" />
+      <point x="2505.179015390685" y="407.0" />
+      <point x="2465.131495001313" y="407.0" />
+      <point x="-36.25" y="15.0" />
+    </edge>
+    <edge source="java.io.StringWriter" target="java.io.Writer" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="2300.231205603788" y="191.0" />
+      <point x="2144.981205603788" y="191.0" />
+      <point x="2144.981205603788" y="171.0" />
+      <point x="1862.731205603788" y="171.0" />
+      <point x="25.25" y="15.0" />
+    </edge>
+    <edge source="java.io.OutputStreamWriter" target="java.io.OutputStream" relationship="DEPENDENCY">
+      <point x="52.5" y="-15.0" />
+      <point x="2551.231205603788" y="181.0" />
+      <point x="2740.7847770323597" y="181.0" />
+      <point x="2740.7847770323597" y="161.0" />
+      <point x="3247.826443699026" y="161.0" />
+      <point x="-54.33333333333337" y="15.0" />
+    </edge>
+    <edge source="java.io.FilterWriter" target="java.io.Writer" relationship="TO_ONE">
+      <point x="-35.0" y="-15.0" />
+      <point x="1548.5977209944735" y="201.0" />
+      <point x="1562.0197974217317" y="201.0" />
+      <point x="1562.0197974217317" y="171.0" />
+      <point x="1812.231205603788" y="171.0" />
+      <point x="-25.25" y="15.0" />
+    </edge>
+    <edge source="java.io.FileWriter" target="java.io.FileOutputStream" relationship="CREATE">
+      <point x="31.75" y="-15.0" />
+      <point x="2736.2847770323597" y="334.0" />
+      <point x="2740.7847770323597" y="334.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.FilterReader" target="java.io.Reader" relationship="GENERALIZATION">
+      <point x="37.0" y="-15.0" />
+      <point x="368.9999999999998" y="314.0" />
+      <point x="446.1404235727416" y="314.0" />
+      <point x="446.1404235727416" y="304.0" />
+      <point x="412.1404235727416" y="304.0" />
+      <point x="36.0" y="15.0" />
+    </edge>
+    <edge source="java.io.FileWriter" target="java.io.OutputStreamWriter" relationship="GENERALIZATION">
+      <point x="-31.75" y="-15.0" />
+      <point x="2672.7847770323597" y="304.0" />
+      <point x="2568.731205603788" y="304.0" />
+      <point x="70.0" y="15.0" />
+    </edge>
+    <edge source="java.io.BufferedOutputStream" target="java.io.OutputStream" relationship="DEPENDENCY">
+      <point x="-57.5" y="-15.0" />
+      <point x="3372.803571428571" y="314.0" />
+      <point x="3424.803571428571" y="314.0" />
+      <point x="3424.803571428571" y="181.0" />
+      <point x="2740.7847770323597" y="181.0" />
+      <point x="2740.7847770323597" y="161.0" />
+      <point x="3247.826443699026" y="161.0" />
+      <point x="-54.33333333333337" y="15.0" />
+    </edge>
+    <edge source="java.io.PushbackReader" target="java.io.FilterReader" relationship="GENERALIZATION">
+      <point x="-46.0" y="-15.0" />
+      <point x="328.2499999999998" y="447.0" />
+      <point x="331.9999999999998" y="447.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.FilterWriter" target="java.io.Writer" relationship="GENERALIZATION">
+      <point x="35.0" y="-15.0" />
+      <point x="1618.5977209944735" y="191.0" />
+      <point x="2144.981205603788" y="191.0" />
+      <point x="2144.981205603788" y="171.0" />
+      <point x="1862.731205603788" y="171.0" />
+      <point x="25.25" y="15.0" />
+    </edge>
+    <edge source="java.io.FilterInputStream" target="java.io.InputStream" relationship="TO_ONE">
+      <point x="47.0" y="-15.0" />
+      <point x="3811.9310543278066" y="70.0" />
+      <point x="1270.731205603788" y="70.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.CharArrayReader" target="java.io.Reader" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="520.4999999999998" y="314.0" />
+      <point x="446.1404235727416" y="314.0" />
+      <point x="446.1404235727416" y="304.0" />
+      <point x="412.1404235727416" y="304.0" />
+      <point x="36.0" y="15.0" />
+    </edge>
+    <edge source="java.io.PrintWriter" target="java.io.OutputStreamWriter" relationship="CREATE">
+      <point x="-8.5625" y="-15.0" />
+      <point x="2488.054015390685" y="417.0" />
+      <point x="2400.2029235727414" y="417.0" />
+      <point x="2400.2029235727414" y="294.0" />
+      <point x="2441.7029235727414" y="294.0" />
+      <point x="2441.7029235727414" y="274.0" />
+      <point x="2428.731205603788" y="274.0" />
+      <point x="-70.0" y="15.0" />
+    </edge>
+    <edge source="java.io.BufferedWriter" target="java.io.Writer" relationship="GENERALIZATION">
+      <point x="42.0" y="-15.0" />
+      <point x="2163.5977209944735" y="191.0" />
+      <point x="2144.981205603788" y="191.0" />
+      <point x="2144.981205603788" y="171.0" />
+      <point x="1862.731205603788" y="171.0" />
+      <point x="25.25" y="15.0" />
+    </edge>
+    <edge source="java.io.PipedOutputStream" target="java.io.PipedInputStream" relationship="DEPENDENCY">
+      <point x="69.0" y="15.0" />
+      <point x="3357.741515390685" y="314.0" />
+      <point x="3097.5972770323597" y="314.0" />
+      <point x="72.375" y="-15.0" />
+    </edge>
+    <edge source="java.io.PipedInputStream" target="java.io.PipedOutputStream" relationship="DEPENDENCY">
+      <point x="24.125" y="-15.0" />
+      <point x="3049.3472770323597" y="304.0" />
+      <point x="3288.741515390685" y="304.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.FileReader" target="java.io.FileInputStream" relationship="CREATE">
+      <point x="-34.0" y="-15.0" />
+      <point x="991.4187056037881" y="447.0" />
+      <point x="624.4999999999998" y="447.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.StreamTokenizer" target="java.io.InputStream" relationship="TO_ONE">
+      <point x="22.625" y="-15.0" />
+      <point x="1010.9572974217317" y="304.0" />
+      <point x="959.5822974217317" y="304.0" />
+      <point x="959.5822974217317" y="161.0" />
+      <point x="1098.116515390685" y="161.0" />
+      <point x="1098.116515390685" y="70.0" />
+      <point x="1270.731205603788" y="70.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.PrintStream" target="java.io.FileOutputStream" relationship="CREATE">
+      <point x="41.428571428571445" y="-15.0" />
+      <point x="2542.8100664298845" y="334.0" />
+      <point x="2740.7847770323597" y="334.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="java.io.BufferedInputStream" target="java.io.InputStream" relationship="DEPENDENCY">
+      <point x="-53.75" y="-15.0" />
+      <point x="4191.553571428571" y="60.0" />
+      <point x="4170.72227703236" y="60.0" />
+      <point x="4170.72227703236" y="50.0" />
+      <point x="1320.0645389371216" y="50.0" />
+      <point x="49.33333333333337" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="true" x="344.0" y="213.9130434782609" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
