@@ -64,35 +64,41 @@ public class ReflectionTests {
         // 判断一个类型是不是成员类（也就是内部类的概念）
         Assertions.assertFalse(int.class.isMemberClass());
         Assertions.assertTrue(Bar.class.isMemberClass());
+    }
 
-        // 判断是否是匿名类
-        // bar1 是通过正常类型实例化的，所以不是你们类；而 bar2 是匿名类
-        // 通过打印出的 Class 也可以看的出来，匿名类名称都是以数字结尾的。
+    @Test
+    void testIsAnonymousClass() {
+        // 判断是否是匿名类型
+        // bar1 是通过正常类型实例化的，所以不是你们类；而 bar2 是匿名类型
         Bar bar1 = new Bar();
         System.out.println(bar1.getClass()); // Output: class demos.ReflectionTests$Bar
         Assertions.assertFalse(bar1.getClass().isAnonymousClass());
         Bar bar2 = new Bar() {};
+        // 通过打印出的 Class 也可以看的出来，匿名类名称都是以数字结尾的。
         System.out.println(bar2.getClass()); // Output: class demos.ReflectionTests$1
         Assertions.assertTrue(bar2.getClass().isAnonymousClass());
+        // lambda 表达式表示的变量不是匿名类型
+        Runnable task = () -> { };
+        Assertions.assertFalse(task.getClass().isAnonymousClass());
+    }
 
-        // 以下是一些比较生僻的判断方法
-        // TODO: 2021/8/21
-
+    @Test
+    void testIsLocalClass() {
+        // 判断是否是本地类型（local class）
         Assertions.assertFalse(int.class.isLocalClass());
         Assertions.assertFalse(Integer.class.isLocalClass());
-
-        // 此处定义一个类型 Foo，然后检查该类是否为 Local 类
+        // 此处定义一个类型 Foo，然后检查该类是否为 Local 类型
         class Foo {}
         Assertions.assertTrue(Foo.class.isLocalClass());
+    }
 
-        // java.lang.Class.isSynthetic(): 如果这个类是一种人工合成的类则返回 true；否则返回false
-        //
-        Assertions.assertFalse(int.class.isSynthetic());
-        Runnable task = () -> {
-        };
-        Assertions.assertFalse(task.getClass().isAnonymousClass());
-        // Assertions.assertFalse(Bar.task.getClass().isAnonymousClass());
-        Assertions.assertTrue(task.getClass().isSynthetic());
+    @Test
+    void testIsSynthetic() {
+        // 判断是否是合成类
+        Assertions.assertFalse(Integer.class.isSynthetic());
+        // lambda 表达式赋值的变量是一个合成类型
+        Runnable task2 = () -> { };
+        Assertions.assertTrue(task2.getClass().isSynthetic());
     }
 
     @Test
