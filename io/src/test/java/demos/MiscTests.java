@@ -64,6 +64,23 @@ public class MiscTests {
     }
 
     @Test
+    void testStringBuilder() {
+        String s = "你好";
+        byte[] bytes = s.getBytes(StandardCharsets.UTF_8);
+        System.out.println(Arrays.toString(bytes));
+
+        String s1 = "今晚打老虎";
+        char[] chars1 = s1.toCharArray();
+        System.out.println(Arrays.toString(chars1));
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(1);
+        sb.append('A');
+        sb.append((byte)1);
+        System.out.println(sb);
+    }
+
+    @Test
     void test21() {
         Character ch = '中';
         System.out.println(ch);
