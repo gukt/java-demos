@@ -4,7 +4,9 @@ import com.google.common.primitives.Primitives;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
+import java.lang.reflect.*;
+import java.util.List;
+import java.util.Map;
 
 /**
  * ReflectionTests class
@@ -78,7 +80,8 @@ public class ReflectionTests {
         System.out.println(bar2.getClass()); // Output: class demos.ReflectionTests$1
         Assertions.assertTrue(bar2.getClass().isAnonymousClass());
         // lambda 表达式表示的变量不是匿名类型
-        Runnable task = () -> { };
+        Runnable task = () -> {
+        };
         Assertions.assertFalse(task.getClass().isAnonymousClass());
     }
 
@@ -97,9 +100,171 @@ public class ReflectionTests {
         // 判断是否是合成类
         Assertions.assertFalse(Integer.class.isSynthetic());
         // lambda 表达式赋值的变量是一个合成类型
-        Runnable task2 = () -> { };
+        Runnable task2 = () -> {
+        };
         Assertions.assertTrue(task2.getClass().isSynthetic());
     }
+
+    @Test
+    void testGetComponentType() {
+        // 获取数组的成员类型
+        String[] s = new String[0];
+        Class<?> cls = s.getClass();
+        Class<?> componentType = cls.getComponentType();
+        System.out.println(componentType);
+    }
+
+    /**
+     * 测试方法返回值的泛型参数类型
+     */
+    @Test
+    void testGetTypeArguments() throws NoSuchMethodException, NoSuchFieldException {
+        class Person {
+
+            private Map<String, Integer> map1;
+
+            private List<String> names;
+
+            List<String> getNames() {
+                return this.names;
+            }
+
+            void setNames(List<String> names) {
+                this.names = names;
+            }
+        }
+
+        // 我们经常看到很多文章中提到：Java 泛型是运行期是擦除的，所以无法在运行期获得泛型信息，实际上这种说法不完全正确
+        // 在有些情况下是可以获取到泛型信息的，比如：方法的返回值，方法的参数，字段的类型中的泛型信息都可以通过反射获得
+        // 获得方法返回值的泛型参数类型
+        Method method1 = Person.class.getDeclaredMethod("getNames");
+        Type returnType = method1.getGenericReturnType();
+        printTypeArgument(returnType);
+
+        // 获得字段的泛型参数类型
+        Field field = Person.class.getDeclaredField("map1");
+        Type fieldGenericType = field.getGenericType();
+        printTypeArgument(fieldGenericType);
+
+        // 获得方法参数的泛型参数类型
+        Method method2 = Person.class.getDeclaredMethod("setNames", List.class);
+        Type[] genericParameterTypes = method2.getGenericParameterTypes();
+        for (Type genericParameterType : genericParameterTypes) {
+            printTypeArgument(genericParameterType);
+        }
+    }
+
+    interface Movable<T> {}
+
+    @Test
+    void testGetTypeArgumentBySupperClassOrInterface() {
+        // 还可以通过 Super class 或 Interface 获得类型参数
+        // 子类和父类中都可以写，如：Dog#getTypeArgument、Cat#getTypeArgument2
+        // 也可以通过接口获得类型，如下面的 Cat#getTypeArgument3
+        abstract class Animal<T> {
+
+            public Class<?> getTypeArgument() {
+                Type genericSuperclass = this.getClass().getGenericSuperclass();
+                ParameterizedType parameterizedType = ((ParameterizedType) genericSuperclass);
+                Type[] typeArguments = parameterizedType.getActualTypeArguments();
+                return (Class<?>) typeArguments[0];
+            }
+        }
+
+        class Dog extends Animal<String> {}
+        class Cat extends Animal<Integer> implements Movable<Long> {
+
+            public Class<?> getTypeArgument2() {
+                Type genericSuperclass = this.getClass().getGenericSuperclass();
+                ParameterizedType parameterizedType = ((ParameterizedType) genericSuperclass);
+                Type[] typeArguments = parameterizedType.getActualTypeArguments();
+                return (Class<?>) typeArguments[0];
+            }
+
+            public Class<?> getTypeArgument3() {
+                Type[] genericInterfaces = this.getClass().getGenericInterfaces();
+                ParameterizedType parameterizedType = ((ParameterizedType) genericInterfaces[0]);
+                Type[] typeArguments = parameterizedType.getActualTypeArguments();
+                return (Class<?>) typeArguments[0];
+            }
+        }
+
+        // Output: class java.lang.String
+        System.out.println(new Dog().getTypeArgument());
+
+        Cat smellyCat = new Cat();
+        // Output: class java.lang.Integer
+        System.out.println(smellyCat.getTypeArgument2());
+        // Output: class java.lang.Long
+        System.out.println(smellyCat.getTypeArgument3());
+
+        // 但是如果一个变量本身也是一个泛型类型，那么就不能通过 Super class 或 Interface 运行时动态获取到类型参数，比如：
+        class Bird<T> extends Animal<T> {
+
+            public Class<?> getTypeArgument4() {
+                Type genericSuperclass = this.getClass().getGenericSuperclass();
+                ParameterizedType parameterizedType = ((ParameterizedType) genericSuperclass);
+                Type[] typeArguments = parameterizedType.getActualTypeArguments();
+                // 这里会抛出异常：java.lang.ClassCastException:
+                // sun.reflect.generics.reflectiveObjects.TypeVariableImpl cannot be cast to java.lang.Class
+                // 因为此时 typeArguments[0] 并不是真实的类型，而是 TypeVariableImpl 对象，所以转换出错
+                return (Class<?>) typeArguments[0];
+            }
+        }
+
+        System.out.println(new Bird<String>().getTypeArgument4());
+        Assertions.assertThrows(ClassCastException.class, () -> new Bird<String>().getTypeArgument4());
+    }
+
+    /**
+     * 打印指定类型的泛型类型参数
+     *
+     * @param type 类型
+     */
+    private void printTypeArgument(Type type) {
+        if (!(type instanceof ParameterizedType)) {
+            System.out.println("Type [" + type + "] is not a ParameterizedType");
+            return;
+        }
+        ParameterizedType parameterizedType = (ParameterizedType) type;
+        Type[] typeArguments = parameterizedType.getActualTypeArguments();
+        System.out.println("parameterizedType:" + parameterizedType);
+        for (Type typeArgument : typeArguments) {
+            Class<?> typeArgClass = (Class<?>) typeArgument;
+            System.out.println("    typeArgClass = " + typeArgClass);
+        }
+    }
+
+    // /**
+    //  * 测试字段的泛型参数类型
+    //  */
+    // @Test
+    // void testFieldTypeArguments() throws NoSuchFieldException {
+    //     Field field = Person.class.getDeclaredField("map1");
+    //     Type returnType = field.getGenericType();
+    //     if (returnType instanceof ParameterizedType) {
+    //         ParameterizedType type = (ParameterizedType) returnType;
+    //         Type[] typeArguments = type.getActualTypeArguments();
+    //         for (Type typeArgument : typeArguments) {
+    //             Class<?> typeArgClass = (Class<?>) typeArgument;
+    //             System.out.println("typeArgClass = " + typeArgClass);
+    //         }
+    //     }
+    // }
+    //
+    // @Test
+    // void testMethodArgumentTypeArguments() throws NoSuchMethodException {
+    //     Method method = Person.class.getDeclaredMethod("setNames", List.class);
+    //     Type[] genericParameterTypes = method.getGenericParameterTypes();
+    //     for (Type genericParameterType : genericParameterTypes) {
+    //         ParameterizedType type = (ParameterizedType) genericParameterType;
+    //         Type[] typeArguments = type.getActualTypeArguments();
+    //         for (Type typeArgument : typeArguments) {
+    //             Class<?> typeArgClass = (Class<?>) typeArgument;
+    //             System.out.println("typeArgClass = " + typeArgClass);
+    //         }
+    //     }
+    // }
 
     @Test
     void testClassForName() throws ClassNotFoundException {
@@ -146,6 +311,7 @@ public class ReflectionTests {
         System.out.println(arrInt1.getClass());
     }
 
+    @SuppressWarnings("SameParameterValue")
     private Class<?> getClassByName(String name) throws ClassNotFoundException {
         if ("byte".equalsIgnoreCase(name)) return byte.class;
         if ("short".equalsIgnoreCase(name)) return short.class;
@@ -160,4 +326,19 @@ public class ReflectionTests {
     }
 
     static class Bar {}
+
+    // static class Person {
+    //
+    //     private Map<String, String> map1;
+    //
+    //     private List<String> names;
+    //
+    //     List<String> getNames() {
+    //         return this.names;
+    //     }
+    //
+    //     void setNames(List<String> names) {
+    //         this.names = names;
+    //     }
+    // }
 }
