@@ -1,4 +1,4 @@
-package tech.codedog.guides;
+package demos;
 
 /**
  * Application class
