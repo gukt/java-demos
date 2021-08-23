@@ -1,4 +1,4 @@
-package tech.codedog.guides.line;
+package demos.line;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandler.Sharable;

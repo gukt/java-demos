@@ -1,4 +1,4 @@
-package tech.codedog.guides;
+package demos;
 
 import java.util.Date;
 

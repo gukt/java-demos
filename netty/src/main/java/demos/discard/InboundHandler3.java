@@ -1,4 +1,4 @@
-package tech.codedog.guides.discard;
+package demos.discard;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

@@ -1,4 +1,4 @@
-package tech.codedog.guides.line;
+package demos.line;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

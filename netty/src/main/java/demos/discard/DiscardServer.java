@@ -1,4 +1,4 @@
-package tech.codedog.guides.discard;
+package demos.discard;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
