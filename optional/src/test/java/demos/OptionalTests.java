@@ -1,4 +1,4 @@
-package tech.codedog.guides;
+package demos;
 
 import lombok.Getter;
 import lombok.NonNull;
