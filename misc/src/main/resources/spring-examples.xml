@@ -9,5 +9,5 @@
     <!--<bean id="bar" class="Bar"/>-->
     <!--<bean id="smartLifeCycleBean" class="SmartLifeCycleBean"/>-->
 
-    <bean class="net.bafeimao.examples.spring.ComplexBean" init-method="init" destroy-method="dispose"/>
+    <bean class="demos.spring.ComplexBean" init-method="init" destroy-method="dispose"/>
 </beans>
