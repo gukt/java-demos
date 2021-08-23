@@ -1,20 +1,20 @@
 package demos;
 
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.*;
+import java.nio.channels.FileChannel;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by Administrator on 2015/10/13.
- */
+@Slf4j
 public class NioTests {
-    private static Logger LOGGER = LoggerFactory.getLogger(NioTests.class);
+
     private static final String HOST = "localhost";
     private static final int PORT = 3304;
 
@@ -53,12 +53,12 @@ public class NioTests {
         buf.flip();
 
         // 由于write()无法保证能写多少字节,因此这里放到while循环体中
-        while(buf.hasRemaining()) {
+        while (buf.hasRemaining()) {
             fileChannel.write(buf);
         }
 
         // 获取当前文件大小
-        long size =  fileChannel.size();
+        long size = fileChannel.size();
 
         // 运行后文件内容被截断了
         fileChannel.truncate(4);

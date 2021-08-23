@@ -1,6 +1,7 @@
 package demos;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.lang.ref.*;
@@ -106,23 +107,23 @@ public class ReferenceTests {
         System.gc(); // invoke gc
 
         // 此时weakRef应该已经进入队列了
-        Assert.assertTrue(weakRef.isEnqueued());
+        Assertions.assertTrue(weakRef.isEnqueued());
 
         if (!phantomRef.isEnqueued()) {
             System.out.println("Requestion finalization.");
             System.runFinalization();
         }
 
-        Assert.assertTrue(phantomRef.isEnqueued());
+        Assertions.assertTrue(phantomRef.isEnqueued());
 
         try {
             ref = weakQueue.remove();
-            Assert.assertEquals(ref, weakRef);
-            Assert.assertNull(ref.get());
+            Assertions.assertEquals(ref, weakRef);
+            Assertions.assertNull(ref.get());
 
             ref = phantomQueue.remove();
-            Assert.assertEquals(ref, phantomRef);
-            Assert.assertNull(ref.get());
+            Assertions.assertEquals(ref, phantomRef);
+            Assertions.assertNull(ref.get());
 
             ref.clear();
         } catch (InterruptedException e) {

@@ -1,9 +1,11 @@
 package demos;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ComparisonChain;
 
 public class Person implements Comparable<Person> {
+
 	private int id;
 	private String name;
 	private int age;
@@ -57,7 +59,7 @@ public class Person implements Comparable<Person> {
 
 	@Override
 	public String toString() {
-		return Objects.toStringHelper(this).add("id", id).add("name", name).add("age", age).toString();
+		return MoreObjects.toStringHelper(this).add("id", id).add("name", name).add("age", age).toString();
 	}
 
 	@Override
