@@ -1,6 +1,0 @@
-demos/Demo2Tests.java
- demos.Demo2Tests
-demos/Demo1Tests.java
- demos.Demo1Tests
-demos/Demo3Tests.java
- demos.Demo3Tests
