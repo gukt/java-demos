@@ -1,4 +1,4 @@
-package demos.demo1;
+package demos;
 
 
 /**
