@@ -1,4 +1,4 @@
-package bafeimao.examples;
+package demos.demo1;
 
 import org.zeromq.ZMQ;
 
