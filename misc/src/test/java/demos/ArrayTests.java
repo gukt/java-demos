@@ -19,6 +19,7 @@ import java.util.stream.Stream;
  * https://www.techiedelight.com/merge-multiple-arrays-java/
  * https://jaxenter.com/java-performance-tutorial-how-fast-are-the-java-8-streams-118830.html
  * https://stackoverflow.com/questions/80476/how-can-i-concatenate-two-arrays-in-java
+ * https://www.baeldung.com/java-varargs
  * </pre>
  *
  * @author https://github.com/gukt
@@ -279,6 +280,7 @@ public class ArrayTests {
         return (T[]) Array.newInstance(type, length);
     }
 
+    @SafeVarargs
     static <T> T[] concatWithArrayCopy(T[] a, T... b) {
         T[] result = Arrays.copyOf(a, a.length + b.length);
         System.arraycopy(b, 0, result, a.length, b.length);
