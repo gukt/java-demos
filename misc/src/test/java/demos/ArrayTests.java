@@ -22,6 +22,13 @@ import java.util.Arrays;
 public class ArrayTests {
 
     @Test
+    void testVarargs() {
+        print("hello", "world");
+        String[] arr = new String[]{"hello", "world"};
+        print(arr);
+    }
+
+    @Test
     void testCreateArray() {
         // 编译期，直接创建
         int[] arr11 = new int[2];
@@ -171,7 +178,16 @@ public class ArrayTests {
     }
 
     @SuppressWarnings("unchecked")
-    private <T> T[] newArray(Class<T> type, int length) {
+    <T> T[] newArray(Class<T> type, int length) {
         return (T[]) Array.newInstance(type, length);
+    }
+
+    // 可变参数（varargs）是数组，所以把它当成数组就好了。
+    // 每个方法只能定义一个 varargs，且只能是最后一个参数。
+    void print(String... args) {
+        System.out.println(args.getClass());   // Output: class [Ljava.lang.String;
+        for (String arg : args) {
+            System.out.println(arg);
+        }
     }
 }

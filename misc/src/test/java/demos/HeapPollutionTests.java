@@ -18,25 +18,7 @@ import java.util.List;
  */
 public class HeapPollutionTests {
 
-    @Test
-    void testVarargs() {
-        class Foo {
 
-            // 可变参数（varargs）是数组，所以把它当成数组就好了。
-            // 每个方法只能定义一个 varargs，且只能是最后一个参数。
-            void print(String... args) {
-                System.out.println(args.getClass());   // Output: class [Ljava.lang.String;
-                for (String arg : args) {
-                    System.out.println(arg);
-                }
-            }
-        }
-
-        Foo foo = new Foo();
-        foo.print("hello", "world");
-        String[] arr = new String[]{"hello", "world"};
-        foo.print(arr);
-    }
 
     @Test
     void testHeapPollutionWhenUsingParameterizedVarargType() {
