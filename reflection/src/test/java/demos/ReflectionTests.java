@@ -17,7 +17,7 @@ public class ReflectionTests {
 
     @Test
     void testPrimitiveTypes() {
-        // 在 java 中， 即使 primitive 类型也有与之对应的 class 对象
+        // 在 java 中， 即使 Primitive 类型也有与之对应的 class 对象
         // Primitive 类型一共有以下 9 种
         System.out.println(byte.class);
         System.out.println(short.class);
