@@ -14,9 +14,19 @@ import java.util.stream.Stream;
 
 /**
  * ArrayTests class
+ * <pre>
+ * https://stackoverflow.com/questions/12462079/possible-heap-pollution-via-varargs-parameter
+ * https://www.techiedelight.com/merge-multiple-arrays-java/
+ * https://jaxenter.com/java-performance-tutorial-how-fast-are-the-java-8-streams-118830.html
+ * https://stackoverflow.com/questions/80476/how-can-i-concatenate-two-arrays-in-java
+ * </pre>
  *
  * @author https://github.com/gukt
  * @see <a href="https://github.com/gukt/java-demos/tree/main/reflection">java-demos-reflection</a>
+ * @see <a href="https://www.baeldung.com/java-arrays-guide">Arrays in Java: A Reference Guide</a>
+ * @see <a href="https://www.baeldung.com/java-concatenate-arrays">Concatenate Two Arrays in Java</a>
+ * @see <a href="https://www.baeldung.com/java-generic-array">Creating a Generic Array in Java</a>
+ * @see <a href="https://www.baeldung.com/java-array-copy#the-arrays-class">How to Copy an Array in Java</a>
  */
 public class ArrayTests {
 
@@ -172,14 +182,6 @@ public class ArrayTests {
 
         // 总结 'T[] copyOf(T[] original, int newLength)' 和 'T[] copyOf(U[] original, int newLength, Class<? extends T[]> newType)' 的差异：
         // 前者返回值类型必须和 original 相同； 后者可以限定（缩小）数组类型范围。
-
-        // TODO: 2021/8/24 https://www.baeldung.com/java-array-copy#the-arrays-class
-        // TODO: 2021/8/24 https://www.baeldung.com/java-generic-array
-        // TODO: 2021/8/24 https://www.baeldung.com/java-concatenate-arrays
-        // TODO: 2021/8/24 https://stackoverflow.com/questions/12462079/possible-heap-pollution-via-varargs-parameter
-        // TODO: 2021/8/24 https://www.techiedelight.com/merge-multiple-arrays-java/
-        // TODO: 2021/8/24 https://jaxenter.com/java-performance-tutorial-how-fast-are-the-java-8-streams-118830.html
-        // TODO: 2021/8/24 https://stackoverflow.com/questions/80476/how-can-i-concatenate-two-arrays-in-java
     }
 
     @Test
