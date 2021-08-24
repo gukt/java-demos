@@ -1,51 +1,36 @@
 package demos;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 /**
  * ArrayTests class
  * <pre>
- * https://stackoverflow.com/questions/12462079/possible-heap-pollution-via-varargs-parameter
- * https://www.techiedelight.com/merge-multiple-arrays-java/
- * https://jaxenter.com/java-performance-tutorial-how-fast-are-the-java-8-streams-118830.html
- * https://stackoverflow.com/questions/80476/how-can-i-concatenate-two-arrays-in-java
- * https://www.baeldung.com/java-varargs
+ *     <a href="https://github.com/gukt/java-demos/tree/main/reflection">java-demos-reflection</a>
+ *     <a href="https://www.baeldung.com/java-arrays-guide">Arrays in Java: A Reference Guide</a>
+ *     <a href="https://www.baeldung.com/java-generic-array">Creating a Generic Array in Java</a>
+ *     <a href="https://www.baeldung.com/java-array-copy#the-arrays-class">How to Copy an Array in Java</a>
+ *     https://stackoverflow.com/questions/12462079/possible-heap-pollution-via-varargs-parameter
+ *     https://www.baeldung.com/java-varargs
  * </pre>
  *
  * @author https://github.com/gukt
- * @see <a href="https://github.com/gukt/java-demos/tree/main/reflection">java-demos-reflection</a>
- * @see <a href="https://www.baeldung.com/java-arrays-guide">Arrays in Java: A Reference Guide</a>
- * @see <a href="https://www.baeldung.com/java-concatenate-arrays">Concatenate Two Arrays in Java</a>
- * @see <a href="https://www.baeldung.com/java-generic-array">Creating a Generic Array in Java</a>
- * @see <a href="https://www.baeldung.com/java-array-copy#the-arrays-class">How to Copy an Array in Java</a>
  */
 public class ArrayTests {
 
     @Test
-    void test1() {
-        int[] arr1 = {1, 2, 3, 4};
-        IntStream anotherStream = Arrays.stream(arr1, 1, 3);
-    }
-
-    @Test
     void testCreateArray() {
-        // 编译期，直接创建，可以以字面量方式创建数组。
+        // 编译期，直接创建
         int[] arr11 = new int[2];
-        // 字面量方式创建数组
+        // 也可以字面量方式创建数组。
         int[] arr12 = {1, 2};
         Integer[] arr13 = {1, 2};
         Object[] arr14 = {1, 2};
-        System.out.printf("%s, %s, %s", Arrays.toString(arr12), Arrays.toString(arr13), Arrays.toString(arr14));
+        System.out.printf("%s, %s, %s, %s", Arrays.toString(arr11), Arrays.toString(arr12),
+                Arrays.toString(arr13), Arrays.toString(arr14));
 
         // 如果类型是运行期决定的，那么就需要借助 java.lang.reflect.Array.newInstance(Class<?> componentType, int length) 创建数组对象
         // 从包名可以看出，用的是反射方式
@@ -185,144 +170,8 @@ public class ArrayTests {
         // 前者返回值类型必须和 original 相同； 后者可以限定（缩小）数组类型范围。
     }
 
-    @Test
-    void testConcatArrays1() {
-        // 使用 System.arraycopy 这个 native 方法，合并两个数组，
-        // 优点是：
-        // 1. 高效，首先它是 native 方法，不借助任何外部工具类，也不会创建多余的中间变量。
-        // 2. 适用于所有的 Primitive 原始类型数组
-        // NOTE:
-        // 1. 应该避免涉及 ArrayLists、streams 等解决方案，因为那些方法需要分配临时内存而没有任何用处。
-        // 2. 避免对大型数组进行 for 循环，因为它们效率不高。native 方法使用非常快的块复制功能。
-        int[] first = {1, 2};
-        int[] second = {3, 4};
-        int[] dest = new int[first.length + second.length]; // #1
-        System.arraycopy(first, 0, dest, 0, first.length); // #2
-        System.arraycopy(second, 0, dest, first.length, second.length);
-        System.out.println(Arrays.toString(dest));
-
-        // 上面的写法还有个变体，效果和原理与上面的写法是一模一样的（缺点是：稍稍有点没上面那么直观易理解）
-        // 这一句顶上面的 #1 和 #2 的两句
-        int[] dest2 = Arrays.copyOf(first, first.length + second.length);
-        System.arraycopy(second, 0, dest2, first.length, second.length);
-        System.out.println(Arrays.toString(dest2));
-    }
-
-    @Test
-    void testConcatArrays2() {
-        // 使用一个临时的 List 变量用于保存结果，借助 JDK 1.5 的 Collections.addAll 工具方法，
-        // 将需要合并的数组添加进这个临时变量；最后使用 List.toArray 转换为数组输出。
-        // 该方法的优点是：简单，容易理解
-        // 缺点是：
-        // 1. 比较低效，产生了一个 ArrayList 变量，但却没啥用，只是用它在最后调用它的 toArray 方法。
-        // 2. 不支持 Primitive 原生类型数组。
-        Integer[] first = {1, 2};
-        Integer[] second = {3, 4};
-        List<Integer> both = new ArrayList<>(first.length + second.length);
-        Collections.addAll(both, first);
-        Collections.addAll(both, second);
-        // Collections.addAll(both, new int[]{5, 6});
-        Integer[] result = both.toArray(new Integer[0]);
-        System.out.println(Arrays.toString(result));
-    }
-
-
-    @Test
-    void testConcatArrayWithApacheCommons() {
-        Integer[] first = {1, 2};
-        Integer[] second = {3, 4};
-        System.out.println(Arrays.toString(ArrayUtils.addAll(first, 3, 4)));
-        System.out.println(Arrays.toString(ArrayUtils.addAll(first, second)));
-    }
-
-    @Test
-    void testConcatArrayWithCustomConcat1() {
-        Integer[] first = {1, 2};
-        Integer[] second = {3, 4};
-        System.out.println(Arrays.toString(concatWithArrayCopy(first, second)));
-        System.out.println(Arrays.toString(concatWithArrayCopy(first, 4, 5)));
-    }
-
-    @Test
-    void testConcatArrayWithCustomConcat2() {
-        int[] first = {1, 2};
-        int[] second = {3, 4};
-        System.out.println(Arrays.toString(concatWithCopy2(first, second)));
-        // System.out.println(Arrays.toString(concat(first, second, new int[]{4}, new int[]{5})));
-        // System.out.println(Arrays.toString(concat(first, new int[]{4, 5})));
-    }
-
-    @Test
-    public void givenTwoArrays_whenConcatWithCommonsLang_thenGetExpectedResult() {
-        // String[] result = ArrayUtils.addAll(strArray1, strArray2);
-        // assertThat(result).isEqualTo(expectedStringArray);
-        //
-        // int[] intResult = ArrayUtils.addAll(intArray1, intArray2);
-        // assertThat(intResult).isEqualTo(expectedIntArray);
-    }
-
-    @Test
-    public void givenTwoStringArrays_whenConcatWithGuava_thenGetExpectedResult() {
-        // String[] result = ObjectArrays.concat(strArray1, strArray2, String.class);
-        // assertThat(result).isEqualTo(expectedStringArray);
-    }
-
-    @Test
-    public void givenTwoIntArrays_whenConcatWithGuava_thenGetExpectedResult() {
-        // int[] intResult = Ints.concat(intArray1, intArray2);
-        // assertThat(intResult).isEqualTo(expectedIntArray);
-    }
-
-    // Internal methods
-
     @SuppressWarnings("unchecked")
     private <T> T[] newArray(Class<T> type, int length) {
         return (T[]) Array.newInstance(type, length);
     }
-
-    @SafeVarargs
-    static <T> T[] concatWithArrayCopy(T[] a, T... b) {
-        T[] result = Arrays.copyOf(a, a.length + b.length);
-        System.arraycopy(b, 0, result, a.length, b.length);
-        return result;
-    }
-
-    static <T> T[] concatWithStream(T[] array1, T[] array2) {
-        return Stream.concat(Arrays.stream(array1), Arrays.stream(array2))
-                .toArray(size -> (T[]) Array.newInstance(array1.getClass().getComponentType(), size));
-    }
-
-    static int[] concatIntArraysWithIntStream(int[] array1, int[] array2) {
-        return IntStream.concat(Arrays.stream(array1), Arrays.stream(array2)).toArray();
-    }
-
-    static <T> T[] concatWithCollections(T[] a, T[] b) {
-        List<T> resultList = new ArrayList<>(a.length + b.length);
-        Collections.addAll(resultList, a);
-        Collections.addAll(resultList, b);
-
-        @SuppressWarnings("unchecked")
-        T[] resultArray = (T[]) Array.newInstance(a.getClass().getComponentType(), 0);
-        return resultList.toArray(resultArray);
-    }
-
-    @SuppressWarnings({"unchecked", "SuspiciousSystemArraycopy"})
-    static <T> T concatWithCopy2(T a, T b) {
-        if (!a.getClass().isArray() || !b.getClass().isArray()) {
-            throw new IllegalArgumentException("Only arrays are accepted.");
-        }
-        Class<?> compType1 = a.getClass().getComponentType();
-        Class<?> compType2 = b.getClass().getComponentType();
-        if (!compType1.equals(compType2)) {
-            throw new IllegalArgumentException("Two arrays have different types.");
-        }
-        int len1 = Array.getLength(a);
-        int len2 = Array.getLength(b);
-
-        T result = (T) Array.newInstance(compType1, len1 + len2);
-        System.arraycopy(a, 0, result, 0, len1);
-        System.arraycopy(b, 0, result, len1, len2);
-        return result;
-    }
-
 }
