@@ -9,12 +9,8 @@ import java.util.Arrays;
 /**
  * ArrayTests class
  * <pre>
- *     <a href="https://github.com/gukt/java-demos/tree/main/reflection">java-demos-reflection</a>
- *     <a href="https://www.baeldung.com/java-arrays-guide">Arrays in Java: A Reference Guide</a>
- *     <a href="https://www.baeldung.com/java-generic-array">Creating a Generic Array in Java</a>
- *     <a href="https://www.baeldung.com/java-array-copy#the-arrays-class">How to Copy an Array in Java</a>
- *     https://stackoverflow.com/questions/12462079/possible-heap-pollution-via-varargs-parameter
- *     https://www.baeldung.com/java-varargs
+ *     https://www.baeldung.com/java-arrays-guide
+ *     https://github.com/gukt/java-demos/tree/main/reflection
  * </pre>
  *
  * @author https://github.com/gukt
@@ -23,6 +19,7 @@ public class ArrayTests {
 
     @Test
     void testVarargs() {
+        // https://www.baeldung.com/java-varargs
         print("hello", "world");
         String[] arr = new String[]{"hello", "world"};
         print(arr);
@@ -30,6 +27,9 @@ public class ArrayTests {
 
     @Test
     void testCreateArray() {
+        // References:
+        // https://www.baeldung.com/java-generic-array
+
         // 编译期，直接创建
         int[] arr11 = new int[2];
         // 也可以字面量方式创建数组。
@@ -80,6 +80,7 @@ public class ArrayTests {
 
     @Test
     void testSystemArrayCopy() {
+        // https://www.baeldung.com/java-array-copy#the-arrays-class
         // System.arraycopy 方法用以拷贝数组，是一个 native 方法，效率高。
         int[] src = {1, 2, 3, 4};
         int[] dest = new int[2];

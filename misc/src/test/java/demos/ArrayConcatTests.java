@@ -86,6 +86,11 @@ public class ArrayConcatTests {
         int[] arr4 = {3, 4};
         // ArrayUtils.addAll 除了提供了对象数组的连接，还提供了所有 primitive 数组的重载方法。
         System.out.println(Arrays.toString(ArrayUtils.addAll(arr3, arr4)));
+        System.out.println(Arrays.toString(ArrayUtils.addAll(arr3, 4,5))); // [1, 2, 4, 5]
+
+        // 添加一个元素到数组末尾
+        System.out.println(Arrays.toString(ArrayUtils.add(new int[]{1, 2}, 3))); // [1, 2, 3]
+        System.out.println(Arrays.toString(ArrayUtils.addFirst(new int[]{1, 2}, 3))); // [3, 1, 2]
     }
 
     @Test

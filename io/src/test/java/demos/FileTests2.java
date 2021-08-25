@@ -1,5 +1,6 @@
 package demos;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -9,18 +10,16 @@ import java.io.IOException;
 /**
  * file.mkdir()需要父目录存在，如果不存在将返回false表示创建目录不成功
  */
-public class FileTests {
+public class FileTests2 {
 
     @Test
     public void testNewFileAndDeleteFile() throws IOException {
         File file = new File("c:/tmp.txt");
-
         // 如果沒有就创建新文件
         if (!file.exists()) {
             boolean success = file.createNewFile();
             Assertions.assertTrue(success);
         }
-
         // 删除临时文件
         if (file.exists()) {
             boolean deleted = file.delete();
@@ -47,7 +46,7 @@ public class FileTests {
             Assertions.assertTrue(success);
 
             // 递归删除刚刚创建成功的目录
-            FileUtils.delete("d:/path");
+            FileUtils.delete(new File("d:/path"));
 
             success = file.getParentFile().mkdirs();
             Assertions.assertTrue(success);
@@ -60,7 +59,7 @@ public class FileTests {
             Assertions.assertTrue(created);
 
             // 测试结束，清理
-            FileUtils.delete("d:/path");
+            FileUtils.delete(new File("d:/path"));
         }
     }
 
@@ -97,32 +96,5 @@ public class FileTests {
         if (file.exists()) {
             file.delete();
         }
-    }
-
-    @Test
-    public void testFileMisc() throws IOException {
-        File file = new File("./conf/common/aaa.txt");
-
-        System.out.println("file.getName()=" + file.getName());
-        System.out.println("file.getPath()=" + file.getPath());
-        System.out.println("file.getParent()=" + file.getParent());
-        System.out.println("file.getParentFile()=**File**:" + file.getParentFile());
-
-        System.out.println("file.getAbsolutePath()=" + file.getAbsolutePath());
-        System.out.println("file.getAbsoluteFile()=**File**:" + file.getAbsoluteFile());
-
-        System.out.println("file.getCanonicalPath()=" + file.getCanonicalPath());
-        System.out.println("file.getCanonicalFile()=" + file.getCanonicalFile());
-
-        System.out.println(file.isFile()); // true;
-        System.out.println(file.isDirectory()); // false;
-        System.out.println(file.isHidden()); // false;
-
-        // 是否是绝对地址，UNIX以/开头，Windows以盘符开头
-        System.out.println(file.isAbsolute()); // true;
-
-        Assertions.assertTrue(file.canWrite());
-        Assertions.assertTrue(file.canRead());
-        Assertions.assertTrue(file.canExecute());
     }
 }

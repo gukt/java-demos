@@ -1,15 +1,23 @@
 package demos;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
 import java.util.Date;
 
+@Slf4j
 public class QuartzTests {
 
-    @Slf4j
+    @Test
+    void testHelloJob() {
+        HelloJob job = new HelloJob();
+        // TODO: 2021/8/25
+    }
+
+
     public static class HelloJob implements Job {
 
         @Override

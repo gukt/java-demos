@@ -184,14 +184,4 @@ public class FileTests {
         File file2 = new File("/tmp/", "/a.txt");
         System.out.println(file2.getAbsolutePath());
     }
-
-    @Test
-    void testReadFile() {
-        // File 构造函数有 4 个
-        String filename = "foo.txt";
-        File file1 = new File(filename);
-        File file12 = new File("aaa", "b.txt");
-        File file3 = new File(file1, "aaa");
-        // File file4 = new File()
-    }
 }
