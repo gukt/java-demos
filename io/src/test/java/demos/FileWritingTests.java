@@ -11,6 +11,10 @@ import java.nio.file.Paths;
 /**
  * FileWritingTests class
  *
+ * <pre>
+ *     http://tutorials.jenkov.com/java-io/index.html
+ * </pre>
+ *
  * @author https://github.com/gukt
  */
 public class FileWritingTests {

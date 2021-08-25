@@ -24,6 +24,7 @@ import static demos.TestUtils.prepareTmpFile;
  * <pre>
  *     https://www.baeldung.com/reading-file-in-java#read-file-with-path-readalllines
  *     https://www.baeldung.com/convert-input-stream-to-string
+ *     http://tutorials.jenkov.com/java-io/index.html
  * </pre>
  *
  * @author https://github.com/gukt
