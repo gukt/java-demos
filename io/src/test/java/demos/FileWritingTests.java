@@ -80,7 +80,7 @@ public class FileWritingTests {
         Assertions.assertEquals(content, readFile(filename));
     }
 
-    private String readFile(String filename) throws FileNotFoundException {
+    private String readFile(String filename) {
         File file = new File(filename);
         // BufferedReader reader = new BufferedReader(file);
         // FIXME: 2021/8/18

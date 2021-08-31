@@ -142,6 +142,7 @@ public class FileReadingTests {
         // 如果你有一个文件，想按字符读取，可以将其包装成 FileReader（继承自 InputStreamReader）
         try (InputStream in = new FileInputStream(file)) {
             int data;
+            StringBuilder sb = new StringBuilder();
             // 逐字节读取
             while ((data = in.read()) != -1) {
                 // 如果我们要读取基于字符（文本）的内容，请使用 Reader，而非 InputStream。
@@ -151,7 +152,10 @@ public class FileReadingTests {
                 // 我们很难自己去处理字符的分界，知道几个字节组成一个实际的字符。
                 // 令人愉快的是，这些烦心事我们不必再操心，Reader 的各种子类帮我们处理好了。
                 System.out.println("Read byte: " + data);
+                sb.append((byte) data);
             }
+            // -28-67-96-27-91-6710
+            System.out.println(sb);
         }
     }
 
@@ -178,6 +182,20 @@ public class FileReadingTests {
         try (InputStream in = new FileInputStream(file)) {
             String s = new String(in.readAllBytes(), StandardCharsets.UTF_8);
             System.out.println(s);
+        }
+    }
+
+    @Test
+    void testReadingWithFileInputStreamAndToString() throws IOException {
+        File file = prepareTmpFile("hello.txt", "你好", "世界");
+        try (InputStream in = new FileInputStream(file)) {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            int n;
+            byte[] buffer = new byte[1024];
+            while ((n = in.read(buffer)) != -1) {
+                baos.write(buffer, 0, n);
+            }
+            System.out.println(baos.toString(StandardCharsets.UTF_8));
         }
     }
 
@@ -309,17 +327,63 @@ public class FileReadingTests {
     @Test
     void testReadingWithFileChannelOfNio() {
         // TODO: 2021/8/18
+        // java.nio.file.Files.readString()
     }
 
     @Test
-    void testReadingWithNioJdkFiles() {
-        // FIXME: 2021/8/18
-        // https://www.baeldung.com/reading-file-in-java#%20id=
+    void testReadingBytesFromInputStreamWithGuava() throws IOException {
+        byte[] helloBytes = "hello".getBytes(StandardCharsets.UTF_8);
+        InputStream in = new ByteArrayInputStream(helloBytes);
+        ByteSource byteSource = new ByteSource() {
+            @Override
+            public InputStream openStream() {
+                return in;
+            }
+        };
+        byte[] bytes = byteSource.read();
+        Assertions.assertArrayEquals(helloBytes, bytes);
     }
 
-    // NIO Files 工具类提供了很多工具方法，方便我们读取文件内容
     @Test
-    void testReadingWithNio() throws IOException {
+    void testReadingTextFromInputStreamWithGuava() throws IOException {
+        byte[] helloBytes = "hello".getBytes(StandardCharsets.UTF_8);
+        InputStream in = new ByteArrayInputStream(helloBytes);
+        CharSource charSource = new CharSource() {
+            @Override
+            public Reader openStream() {
+                return new InputStreamReader(in, StandardCharsets.UTF_8);
+            }
+        };
+        String s = charSource.read();
+        Assertions.assertEquals("hello", s);
+
+        // ByteSource 和 CharSource 实例可以互转，可以灵活地为我们提供：“按字节读取” 和 “按字符读取”。
+        // ByteSource byteSource = charSource.asByteSource(StandardCharsets.UTF_8);
+        // byte[] bytes = byteSource.read();
+
+        // 如果读取的是 FileInputStream, 可使用 Files 工具类
+        // String s = Files.asCharSource(file, StandardCharsets.UTF_8).read();
+        // byte[] bytes = Files.asByteSource(file).read();
+    }
+
+    @Test
+    void testReadingTextFromInputStreamWithByteArrayOutputStream() throws IOException {
+        File file = prepareTmpFile("hello.txt", "你好", "世界");
+        InputStream in = new FileInputStream(file);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        int n;
+        byte[] data = new byte[2];
+        while ((n = in.read(data)) != -1) {
+            baos.write(data, 0, n);
+        }
+        baos.flush();
+        String s = baos.toString(StandardCharsets.UTF_8); // Since JDK 10
+        System.out.println(s);
+    }
+
+    // JDK NIO Files 工具类提供了很多工具方法，方便我们读写文件
+    @Test
+    void testReadingTextFromFileWithJdkNioFilesReadAllBytes() throws IOException {
         File file = prepareTmpFile("hello.txt", "你好", "世界");
         Path path = file.toPath();
         // 注意：以下都不需要处理打开关闭流，工具方法内部会自动打开和关闭（和 Guava 类似，Good）
